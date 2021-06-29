@@ -35,12 +35,19 @@ public class MainController {
 		
 		if(username != null && !username.equals("") && username.equals("admin@gmail.com")
 				&& password != null && !password.equals("") && password.equals("admin")) {
-			return new ModelAndView("redirect:/casillas");
+			return new ModelAndView("redirect:/inicio");
 		} else {
 			message = "Usuario incorrecto o no aprobado";
 			return new ModelAndView("errorPage", "message", message);
 		}
 				
+	}
+	
+	@RequestMapping(value = "/inicio")
+	public ModelAndView inicio(ModelAndView model) {
+		model.setViewName("inicio");
+		
+		return model;
 	}
 	
 	@RequestMapping(value = "/casillas")
