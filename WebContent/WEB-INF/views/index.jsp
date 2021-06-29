@@ -7,6 +7,15 @@
 <title>Sistema Prep | Inicio</title>
 </head>
 <body>
-	<h1>Programa de Resultados Electorales Preliminares</h1>
+	<div align="center">
+		<h1>Programa de Resultados Electorales Preliminares</h1>
+		<form action="login" method="post">
+			Correo: <input type="text" name="username" />
+			<br/><br/>
+			Password: <input type="password" name="password"/>
+			<br/><br/>
+			<input type="submit" value="Ingresar" />
+		</form>
+	</div>
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.aaronvegu.prep.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,22 @@ public class MainController {
 	@RequestMapping(value = "/")
 	public String home() {
 		return "index";
+	}
+	
+	@RequestMapping(value = "/login")
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String message;
+		
+		if(username != null && !username.equals("") && username.equals("admin@gmail.com")
+				&& password != null && !password.equals("") && password.equals("admin")) {
+			return new ModelAndView("redirect:/casillas");
+		} else {
+			message = "Usuario incorrecto o no aprobado";
+			return new ModelAndView("errorPage", "message", message);
+		}
+				
 	}
 	
 	@RequestMapping(value = "/casillas")
