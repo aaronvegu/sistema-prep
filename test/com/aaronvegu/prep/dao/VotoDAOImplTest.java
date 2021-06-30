@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.aaronvegu.prep.model.Casilla;
 import com.aaronvegu.prep.model.Voto;
 
 class VotoDAOImplTest {
