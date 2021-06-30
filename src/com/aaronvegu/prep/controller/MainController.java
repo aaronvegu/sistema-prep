@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.aaronvegu.prep.dao.CandidaturaDAO;
 import com.aaronvegu.prep.dao.CasillaDAO;
+import com.aaronvegu.prep.dao.VotoDAO;
 import com.aaronvegu.prep.model.Candidatura;
 import com.aaronvegu.prep.model.Casilla;
 
@@ -26,6 +27,9 @@ public class MainController {
 	
 	@Autowired
 	private CandidaturaDAO candidaturaDAO;
+	
+	@Autowired
+	private VotoDAO votoDAO;
 	
 	@RequestMapping(value = "/")
 	public String home() {
@@ -149,4 +153,15 @@ public class MainController {
 		
 		return new ModelAndView("redirect:/candidaturas");
 	}
+	
+	@RequestMapping(value = "/votos")
+	public ModelAndView getTotalVotos(ModelAndView model) {
+		Integer totalVotos = votoDAO.getTotalVotos();
+		
+		model.addObject("totalVotos", totalVotos);
+		model.setViewName("votos");
+		
+		return model;
+	}
+	
 }

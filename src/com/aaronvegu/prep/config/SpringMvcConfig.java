@@ -15,6 +15,8 @@ import com.aaronvegu.prep.dao.CandidaturaDAO;
 import com.aaronvegu.prep.dao.CandidaturaDAOImpl;
 import com.aaronvegu.prep.dao.CasillaDAO;
 import com.aaronvegu.prep.dao.CasillaDAOImpl;
+import com.aaronvegu.prep.dao.VotoDAO;
+import com.aaronvegu.prep.dao.VotoDAOImpl;
 
 @Configuration
 @EnableWebMvc
@@ -49,5 +51,10 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 	@Bean
 	public CandidaturaDAO getCandidaturaDAO() {
 		return new CandidaturaDAOImpl(getDataSource());
+	}
+	
+	@Bean
+	public VotoDAO getVotoDAO() {
+		return new VotoDAOImpl(getDataSource());
 	}
 }

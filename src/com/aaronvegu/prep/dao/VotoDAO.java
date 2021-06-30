@@ -16,4 +16,6 @@ public interface VotoDAO {
 	
 	public List<Voto> list();
 	
+	public int getTotalVotos();
+	
 }

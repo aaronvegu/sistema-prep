@@ -71,5 +71,15 @@ class VotoDAOImplTest {
 		
 		assertTrue(!listVotos.isEmpty());
 	}
+	
+	@Test
+	void testGetTotalVotos() {
+		int totalVotos = dao.getTotalVotos();
+		
+		if(totalVotos != 0)
+			System.out.println(totalVotos);
+		
+		assertNotNull(totalVotos);
+	}
 
 }

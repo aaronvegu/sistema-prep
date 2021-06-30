@@ -83,5 +83,12 @@ public class VotoDAOImpl implements VotoDAO {
 		
 		return jdbcTemplate.query(sql, rowMapper);
 	}
+	
+	@Override
+	public int getTotalVotos() {
+		String sql = "SELECT SUM(cantidad) FROM votos";
+		
+		return jdbcTemplate.queryForObject(sql, Integer.class);	
+	}
 
 }

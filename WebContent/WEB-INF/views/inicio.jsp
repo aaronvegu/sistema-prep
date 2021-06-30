@@ -26,6 +26,14 @@
 				<a href="/Prep/candidaturas">Ir a candidaturas</a>
 			</div>
 		</div>
+		<br>
+		<br>
+		<div class="card" style="width: 18rem; margin: 0 auto;">
+			<div class="card-body" style="text-align: center;">
+				<h3 class="card-title">Registrar Votos</h3>
+				<a href="/Prep/votos">Ir a votos</a>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
