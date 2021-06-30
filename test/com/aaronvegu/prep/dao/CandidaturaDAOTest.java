@@ -8,12 +8,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.aaronvegu.prep.model.Casilla;
+import com.aaronvegu.prep.model.Candidatura;
 
-class CasillaDAOTest {
+class CandidaturaDAOTest {
 
 	private DriverManagerDataSource dataSource;
-	private CasillaDAO dao;
+	private CandidaturaDAO dao;
 	
 	@BeforeEach
 	void setupBeforeEach() {
@@ -23,39 +23,39 @@ class CasillaDAOTest {
 		dataSource.setUsername("root");
 		dataSource.setPassword("root");
 		
-		dao = new CasillaDAOImpl(dataSource);
+		dao = new CandidaturaDAOImpl(dataSource);
 	}
 	
 	@Test
 	void testSave() {
-		Casilla casilla = new Casilla("contigua", "tonala", 2684, 11);
-		int result = dao.save(casilla);
+		Candidatura candidatura = new Candidatura("diputacion", "MORENA", 0, 1);
+		int result = dao.save(candidatura);
 		
 		assertTrue(result > 0);
 	}
 
 	@Test
 	void testUpdate() {
-		Casilla casilla = new Casilla(6, "contigua", "tonala", 2686, 11);
-		int result = dao.update(casilla);
+		Candidatura candidatura = new Candidatura(1, "diputacion federal", "mc", 0, 1);
+		int result = dao.update(candidatura);
 		
 		assertTrue(result > 0);
 	}
 
 	@Test
 	void testGet() {
-		Integer id = 6;
-		Casilla casilla = dao.get(id);
+		Integer id = 1;
+		Candidatura candidatura = dao.get(id);
 		
-		if(casilla != null)
-			System.out.println(casilla);
+		if(candidatura != null)
+			System.out.println(candidatura);
 		
-		assertNotNull(casilla);
+		assertNotNull(candidatura);
 	}
 
 	@Test
 	void testDelete() {
-		Integer id = 3;
+		Integer id = 1;
 		int result = dao.delete(id);
 		
 		assertTrue(result > 0);
@@ -63,13 +63,13 @@ class CasillaDAOTest {
 
 	@Test
 	void testList() {
-		List<Casilla> listCasillas = dao.list();
+		List<Candidatura> listCandidaturas = dao.list();
 		
-		for(Casilla aCasilla : listCasillas) {
-			System.out.println(aCasilla);
+		for(Candidatura aCandidatura : listCandidaturas) {
+			System.out.println(aCandidatura);
 		}
 		
-		assertTrue(!listCasillas.isEmpty());
+		assertTrue(!listCandidaturas.isEmpty());
 	}
 
 }

@@ -9,11 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.aaronvegu.prep.model.Casilla;
+import com.aaronvegu.prep.model.Voto;
 
-class CasillaDAOTest {
+class VotoDAOImplTest {
 
 	private DriverManagerDataSource dataSource;
-	private CasillaDAO dao;
+	private VotoDAO dao;
 	
 	@BeforeEach
 	void setupBeforeEach() {
@@ -23,34 +24,34 @@ class CasillaDAOTest {
 		dataSource.setUsername("root");
 		dataSource.setPassword("root");
 		
-		dao = new CasillaDAOImpl(dataSource);
+		dao = new VotoDAOImpl(dataSource);
 	}
 	
 	@Test
 	void testSave() {
-		Casilla casilla = new Casilla("contigua", "tonala", 2684, 11);
-		int result = dao.save(casilla);
+		Voto voto = new Voto(3, 2, 2155);
+		int result = dao.save(voto);
 		
 		assertTrue(result > 0);
 	}
 
 	@Test
 	void testUpdate() {
-		Casilla casilla = new Casilla(6, "contigua", "tonala", 2686, 11);
-		int result = dao.update(casilla);
+		Voto voto = new Voto(3, 3, 2, 2686);
+		int result = dao.update(voto);
 		
 		assertTrue(result > 0);
 	}
 
 	@Test
 	void testGet() {
-		Integer id = 6;
-		Casilla casilla = dao.get(id);
+		Integer id = 2;
+		Voto voto = dao.get(id);
 		
-		if(casilla != null)
-			System.out.println(casilla);
+		if(voto != null)
+			System.out.println(voto);
 		
-		assertNotNull(casilla);
+		assertNotNull(voto);
 	}
 
 	@Test
@@ -63,13 +64,13 @@ class CasillaDAOTest {
 
 	@Test
 	void testList() {
-		List<Casilla> listCasillas = dao.list();
+		List<Voto> listVotos = dao.list();
 		
-		for(Casilla aCasilla : listCasillas) {
-			System.out.println(aCasilla);
+		for(Voto aVoto : listVotos) {
+			System.out.println(aVoto);
 		}
 		
-		assertTrue(!listCasillas.isEmpty());
+		assertTrue(!listVotos.isEmpty());
 	}
 
 }

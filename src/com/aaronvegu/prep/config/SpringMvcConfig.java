@@ -11,6 +11,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.aaronvegu.prep.dao.CandidaturaDAO;
+import com.aaronvegu.prep.dao.CandidaturaDAOImpl;
 import com.aaronvegu.prep.dao.CasillaDAO;
 import com.aaronvegu.prep.dao.CasillaDAOImpl;
 
@@ -23,7 +25,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 	public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/sistema_prep");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/sistema_prep_d");
 		dataSource.setUsername("root");
 		dataSource.setPassword("root");
 		
@@ -42,5 +44,10 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 	@Bean
 	public CasillaDAO getCasillaDAO() {
 		return new CasillaDAOImpl(getDataSource());
+	}
+	
+	@Bean
+	public CandidaturaDAO getCandidaturaDAO() {
+		return new CandidaturaDAOImpl(getDataSource());
 	}
 }
