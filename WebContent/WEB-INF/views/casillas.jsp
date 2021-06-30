@@ -35,6 +35,8 @@
 			</tr>
 			</c:forEach>
 		</table>
+		<br>
+		<a href="/Prep/inicio">Volver</a>
 	</div>
 </body>
 </html>
