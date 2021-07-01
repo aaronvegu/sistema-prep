@@ -1,6 +1,8 @@
 package com.aaronvegu.prep.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,7 @@ import com.aaronvegu.prep.dao.CasillaDAO;
 import com.aaronvegu.prep.dao.VotoDAO;
 import com.aaronvegu.prep.model.Candidatura;
 import com.aaronvegu.prep.model.Casilla;
+import com.aaronvegu.prep.model.Voto;
 
 @Controller
 public class MainController {
@@ -163,5 +166,69 @@ public class MainController {
 		
 		return model;
 	}
+	
+	@RequestMapping(value = "/lista-casillas")
+	public ModelAndView listarCasillas(ModelAndView model) {
+		List<Casilla> listarCasillas = casillaDAO.list();
+		model.addObject("listarCasillas", listarCasillas);
+		model.setViewName("lista-casillas");
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/registrar-voto", method = RequestMethod.GET)
+	public ModelAndView registrarVoto(HttpServletRequest request) {
+		Map<String, Object> modelos = new HashMap<String, Object>();
+		
+		Integer idCasilla = Integer.parseInt(request.getParameter("id"));
+		Casilla casilla = casillaDAO.get(idCasilla);
+		
+		List<Candidatura> listCandidatura = candidaturaDAO.list();
+		
+		modelos.put("casilla", casilla);
+		modelos.put("listCandidatura", listCandidatura);
+		
+		ModelAndView model = new ModelAndView("registrar-voto");
+		model.addObject("modelos", modelos);
+		
+		return model;
+	}
+
+	@RequestMapping(value = "/confirmar-voto", method = RequestMethod.GET)
+	public ModelAndView confirmarVoto(HttpServletRequest request) {
+		Integer idCasilla = Integer.parseInt(request.getParameter("idCasilla"));
+		Integer idCandidatura = Integer.parseInt(request.getParameter("idCandidatura"));
+		
+		Voto voto = new Voto(idCasilla, idCandidatura, 0);
+		
+		ModelAndView model = new ModelAndView("confirmar-voto", "voto", voto);
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/guardar-voto", method = RequestMethod.POST)
+	public ModelAndView saveVoto(@ModelAttribute Voto voto) {
+			votoDAO.save(voto);
+		
+		return new ModelAndView("redirect:/votos");
+	}
+	/*
+	@RequestMapping(value = "/agregar-votos")
+	public ModelAndView listVotos(ModelAndView model) {
+		
+		List<Casilla> listCasilla = casillaDAO.list();
+		List<Candidatura> listCandidatura = candidaturaDAO.list();
+		
+		Map<String, Object> datos = new HashMap<String, Object>();
+		
+		datos.put("listCasilla", listCasilla);
+		datos.put("listCandidatura", listCandidatura);
+		
+		model.addObject("datos", datos);
+		model.setViewName("agregar-votos");
+		
+		return model;
+	}
+	*/
 	
 }

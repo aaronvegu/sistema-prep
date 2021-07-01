@@ -25,7 +25,8 @@
 		</div>
 		<br>
 		<div style="margin: 0 auto;">
-			<a href="/Prep/inicio"><button type="button" class="btn btn-secondary">Volver</button></a>
+			<a href="/Prep/inicio"><button type="button" class="btn btn-secondary" style="margin: 10px;">Volver</button></a>
+			<a href="/Prep/lista-casillas"><button type="button" class="btn btn-primary" style="margin: 10px;">Registrar Votos</button></a>
 		</div>
 	</div>
 </body>
