@@ -34,6 +34,9 @@
 				<a href="/Prep/votos">Ir a votos</a>
 			</div>
 		</div>
+		<div align="center" style="margin: 50px;">
+			<a href="/Prep"><button type="button" class="btn btn-secondary" style="margin: 22px;">Salir</button></a>
+		</div>
 	</div>
 </body>
 </html>

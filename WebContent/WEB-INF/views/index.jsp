@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div align="center" style="margin: 0 auto;">
-		<h1>Programa de Resultados Electorales Preliminares</h1>
+		<h1 style="margin-top: 100px;">Programa de Resultados Electorales Preliminares</h1>
 		<br>
 		<h3>Ingresar</h3>
 		<form action="login" method="post">

@@ -5,38 +5,42 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <title>Casillas Registradas</title>
 </head>
 <body>
-	<div align="center">
-		<h1>Lista de casillas registradas</h1>
-		<h3><a href="agregar-casilla">Nueva Casilla</a></h3>
-		<table border="1">
-			<tr>
-				<th>No</th>
-				<th>Tipo Casilla</th>
-				<th>Municipio</th>
-				<th>Seccion</th>
-				<th>Distrito</th>
-				<th>Accion</th>
-			</tr>
-			<c:forEach items="${ listCasilla }" var="casilla" varStatus="status">
-			<tr>
-				<td>${status.index + 1}</td>		
-				<td>${casilla.tipoCasilla}</td>
-				<td>${casilla.municipio}</td>
-				<td>${casilla.seccion}</td>
-				<td>${casilla.distrito}</td>
-				<td>
-					<a href="editar-casilla?id=${casilla.id}">Editar</a>
-					&nbsp;&nbsp;
-					<a href="eliminar-casilla?id=${casilla.id}">Eliminar</a>
-				</td>
-			</tr>
-			</c:forEach>
+	<div align="center" style="margin: 100px;">
+		<h1 style="margin: 20px;">Lista de casillas registradas</h1>
+		<table class="table" style="max-width: 600px; margin: 50px 0px;">
+			<thead>
+				<tr>
+					<th scope="col">No</th>
+					<th scope="col">Tipo Casilla</th>
+					<th scope="col">Municipio</th>
+					<th scope="col">Seccion</th>
+					<th scope="col">Distrito</th>
+					<th scope="col">Accion</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${ listCasilla }" var="casilla" varStatus="status">
+				<tr>
+					<td scope="row">${status.index + 1}</td>		
+					<td>${casilla.tipoCasilla}</td>
+					<td>${casilla.municipio}</td>
+					<td>${casilla.seccion}</td>
+					<td>${casilla.distrito}</td>
+					<td>
+						<a href="editar-casilla?id=${casilla.id}">Editar</a>
+						&nbsp;&nbsp;
+						<a href="eliminar-casilla?id=${casilla.id}">Eliminar</a>
+					</td>
+				</tr>
+				</c:forEach>
+			</tbody>
 		</table>
-		<br>
-		<a href="/Prep/inicio">Volver</a>
+		<a href="agregar-casilla"><button type="button" class="btn btn-primary btn-sm" style="margin: 22px;">Nueva Casilla</button></a>
+		<a href="/Prep/inicio"><button type="button" class="btn btn-secondary btn-sm" style="margin: 22px;">Volver</button></a>
 	</div>
 </body>
 </html>

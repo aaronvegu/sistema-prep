@@ -28,7 +28,7 @@ class CasillaDAOTest {
 	
 	@Test
 	void testSave() {
-		Casilla casilla = new Casilla("contigua", "tonala", 2684, 11);
+		Casilla casilla = new Casilla("especial", "zapopan", 2684, 11);
 		int result = dao.save(casilla);
 		
 		assertTrue(result > 0);

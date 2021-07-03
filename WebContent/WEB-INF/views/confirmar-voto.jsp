@@ -5,27 +5,28 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<title>Confirmacion de voto | PREP</title>
 </head>
 <body>
-	<div align="center">
-		<h1>Confirmar registro de votos</h1>
-		<h3>Ingrese la cantidad de votos a registrar:</h3>
+	<div align="center" style="margin: 100px;">
+		<h1 style="margin: 20px;">Confirmar registro de votos</h1>
+		<h5>Ingrese la cantidad de votos a registrar:</h5>
 		<form:form action="guardar-voto" method="post" modelAttribute="voto">
-			<table>
+			<div style="max-width: 600px; margin: 50px 0px;">
 				<form:hidden path="casilla"/>
 				<form:hidden path="candidatura"/>
-				<tr>
-					<td>Cantidad de Votos:</td>
-					<td><form:input path="cantidad" /></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center"><input type="submit" value="Confirmar"/></td>
-				</tr>
-			</table>
+				<div>
+					<label class="form-label">Cantidad de Votos:</label>
+					<form:input path="cantidad" class="form-control" style="max-width: 200px;"/>
+				</div>
+				<div style="margin: 30px;">
+					<button type="submit" class="btn btn-primary">Confirmar</button>
+					<a href="/Prep/votos"><button class="btn btn-secondary">Cancelar</button></a>
+				</div>
+			</div>
 		</form:form>
-		<br>
-		<a href="/Prep/votos">Cancelar</a>
 	</div>
+	
 </body>
 </html>

@@ -5,13 +5,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Registrar/Editar Casilla</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<title>Registrar/Editar Candidatura</title>
 </head>
 <body>
-	<div align="center">
-		<h1>Registrar/Editar Candidatura</h1>
+	<div align="center" style="margin: 100px;">
+		<h1 style="margin: 20px;">Registrar/Editar Candidatura</h1>
 		<form:form action="guardar-candidatura" method="post" modelAttribute="candidatura">
-			<table>
+			<table class="table" style="max-width: 600px; margin: 50px 0px;">
 				<form:hidden path="id"/>
 				<tr>
 					<td>Candidatura:</td>
@@ -37,11 +38,10 @@
   						<option value="0" selected>No</option>
 					</select></td>
 				</tr>
-				<tr>
-					<td colspan="2" align="center"><input type="submit" value="Registrar"/></td>
-				</tr>
 			</table>
+			<input class="btn btn-primary" type="submit" value="Registrar"/>
 		</form:form>
+		<a href="/Prep/candidaturas"><button type="button" class="btn btn-secondary btn-sm" style="margin: 22px;">Volver</button></a>
 	</div>
 </body>
 </html>
