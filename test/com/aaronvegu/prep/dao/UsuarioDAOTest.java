@@ -56,6 +56,17 @@ class UsuarioDAOTest {
 		
 		assertNotNull(usuario);
 	}
+	
+	@Test
+	void testGetByMail() {
+		String correo = "aaronvegu@gmail.com";
+		Usuario usuario = dao.getByMail(correo);
+		
+		if(usuario != null)
+			System.out.println(usuario);
+		
+		assertNotNull(usuario);
+	}
 
 	@Test
 	void testDelete() {
@@ -78,8 +89,8 @@ class UsuarioDAOTest {
 
 	@Test
 	void testCheckUser() {
-		Integer id = 3;
-		int result = dao.checkUser(id);
+		String correo = "aaronvegu@gmail.com";
+		int result = dao.checkUser(correo);
 		
 		System.out.println(result);
 		
@@ -88,7 +99,7 @@ class UsuarioDAOTest {
 
 	@Test
 	void testAddAdmin() {
-		Integer id = 3;
+		Integer id = 1;
 		int result = dao.addAdmin(id);
 		
 		System.out.println(result);

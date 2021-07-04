@@ -79,6 +79,41 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 
 	@Override
+	public Usuario getByMail(String correo) {
+		String sql = "SELECT * FROM usuarios WHERE correo='" + correo + "'";
+		
+		ResultSetExtractor<Usuario> extractor = new ResultSetExtractor<Usuario>() {
+
+			@Override
+			public Usuario extractData(ResultSet rs) throws SQLException, DataAccessException {
+				if(rs.next()) {
+					Integer id = rs.getInt("id");
+					String nombre = rs.getString("nombre");
+					String apellidos = rs.getString("apellidos");
+					String password = rs.getString("password");
+					String calle = rs.getString("calle");
+					String colonia = rs.getString("colonia");
+					Integer numInt = rs.getInt("num_int");
+					Integer numExt = rs.getInt("num_ext");
+					String municipio = rs.getString("municipio");
+					String estado = rs.getString("estado");
+					Integer codigoPostal = rs.getInt("codigo_postal");
+					Boolean aprobado = rs.getBoolean("aprobado");
+					Boolean admin = rs.getBoolean("admin");
+					
+					return new Usuario(id, nombre, apellidos, correo, password, 
+							calle, colonia, numInt, numExt, municipio, estado, 
+							codigoPostal, aprobado, admin);
+				}
+				
+				return null;
+			}
+		};
+		
+		return jdbcTemplate.query(sql, extractor);
+	}
+	
+	@Override
 	public int delete(Integer id) {
 		String sql = "DELETE FROM usuarios WHERE id=" + id;
 		return jdbcTemplate.update(sql);
@@ -118,10 +153,10 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 
 	@Override
-	public int checkUser(Integer id) {
-		Usuario u = this.get(id);
+	public int checkUser(String correo) {
+		Usuario u = this.getByMail(correo);
 		
-		if(u.getId() == id && u.getAprobado() == true)
+		if(u.getCorreo() == correo && u.getAprobado() == true)
 			return 1;
 		else
 			return 0;

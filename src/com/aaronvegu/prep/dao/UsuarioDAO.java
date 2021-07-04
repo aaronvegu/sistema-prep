@@ -12,11 +12,13 @@ public interface UsuarioDAO {
 	
 	public Usuario get(Integer id);
 	
+	public Usuario getByMail(String correo);
+	
 	public int delete(Integer id);
 	
 	public List<Usuario> list();
 	
-	public int checkUser(Integer id);
+	public int checkUser(String correo);
 	
 	public int addAdmin(Integer id);
 	
