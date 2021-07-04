@@ -40,15 +40,6 @@
 					    </c:otherwise>
 					</c:choose>
 					<td>
-					<c:choose>
-						<c:when test="${usuario.aprobado == true}">
-					        <a href="cambiar-status?id=${usuario.id}&status=false">Desaprobar</a>
-					    </c:when>    
-					    <c:otherwise>
-					        <a href="cambiar-status?id=${usuario.id}&status=true">Aprobar</a>
-					    </c:otherwise>
-					</c:choose>
-					    &nbsp;&nbsp;
 						<a href="editar-usuario?id=${usuario.id}">Editar</a>
 						&nbsp;&nbsp;
 						<a href="eliminar-usuario?id=${usuario.id}">Eliminar</a>
@@ -57,6 +48,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<a href="agregar-usuario"><button type="button" class="btn btn-primary btn-sm" style="margin: 22px;">Nuevo Usuario</button></a>
 		<a href="/Prep/inicio"><button type="button" class="btn btn-secondary btn-sm" style="margin: 22px;">Volver</button></a>
 	</div>
 </body>

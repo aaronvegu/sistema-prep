@@ -253,6 +253,45 @@ public class MainController {
 		return model;
 	}
 	
+	@RequestMapping(value = "/agregar-usuario", method = RequestMethod.GET)
+	public ModelAndView addUsuario(ModelAndView model) {
+		Usuario addUsuario = new Usuario();
+		model.addObject("usuario", addUsuario);
+		model.setViewName("agregar-usuario");
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/guardar-usuario", method = RequestMethod.POST)
+	public ModelAndView saveUsuario(@ModelAttribute Usuario usuario) {
+		if(usuario.getId() == null)
+			usuarioDAO.save(usuario);
+		else
+			usuarioDAO.update(usuario);
+		
+		return new ModelAndView("redirect:/lista-usuarios");
+	}
+	
+	@RequestMapping(value = "/editar-usuario", method = RequestMethod.GET)
+	public ModelAndView editUsuario(HttpServletRequest request) {
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		
+		Usuario usuario = usuarioDAO.get(id);
+		
+		ModelAndView model = new ModelAndView("agregar-usuario");
+		
+		model.addObject("usuario", usuario);
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/eliminar-usuario", method = RequestMethod.GET)
+	public ModelAndView deleteUsuario(@RequestParam Integer id) {
+		usuarioDAO.delete(id);
+		
+		return new ModelAndView("redirect:/lista-usuarios");
+	}
+	
 	/*
 	@RequestMapping(value = "/agregar-votos")
 	public ModelAndView listVotos(ModelAndView model) {
