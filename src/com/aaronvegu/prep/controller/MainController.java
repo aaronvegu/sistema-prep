@@ -73,6 +73,32 @@ public class MainController {
 		return model;
 	}
 	
+	@RequestMapping(value = "/registro")
+	public ModelAndView registro(ModelAndView model) {
+		Usuario u = new Usuario();
+		model.addObject("usuario", u);
+		model.setViewName("registro");
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/registrar-usuario", method = RequestMethod.POST)
+	public ModelAndView registUsuario(@ModelAttribute Usuario usuario) {
+		if(usuario.getId() == null)
+			usuarioDAO.save(usuario);
+		else
+			usuarioDAO.update(usuario);
+		
+		return new ModelAndView("usuario-registrado");
+	}
+	
+	@RequestMapping(value = "/usuario-registrado")
+	public ModelAndView usuarioRegistrado(ModelAndView model) {
+		model.setViewName("usuario-registrado");
+		
+		return model;
+	}
+	
 	@RequestMapping(value = "/casillas")
 	public ModelAndView listCasilla(ModelAndView model) {
 		List<Casilla> listCasilla = casillaDAO.list();

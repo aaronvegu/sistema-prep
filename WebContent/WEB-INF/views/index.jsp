@@ -22,7 +22,7 @@
 				<input type="password" class="form-control" id="pass" name="password" required/>
 			</div>
 			<button type="submit" class="btn btn-primary">Ingresar</button>
-			
+			<a href="/Prep/registro"><button type="button" class="btn btn-secondary" style="margin: 22px;">Registrarme</button></a>
 		</form>
 	</div>
 </body>
