@@ -119,14 +119,20 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
 	@Override
 	public int checkUser(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
+		Usuario u = this.get(id);
+		
+		if(u.getId() == id && u.getAprobado() == true)
+			return 1;
+		else
+			return 0;
 	}
 
 	@Override
 	public int addAdmin(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
+		Usuario u = this.get(id);
+		u.setAprobado(true);
+		
+		return this.update(u);
 	}
 
 }

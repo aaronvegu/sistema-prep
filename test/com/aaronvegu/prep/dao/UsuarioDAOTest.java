@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.aaronvegu.prep.model.Usuario;
-import com.aaronvegu.prep.model.Usuario;
 
 class UsuarioDAOTest {
 	
@@ -79,12 +78,22 @@ class UsuarioDAOTest {
 
 	@Test
 	void testCheckUser() {
-		fail("Not yet implemented");
+		Integer id = 3;
+		int result = dao.checkUser(id);
+		
+		System.out.println(result);
+		
+		assertTrue(result > 0);
 	}
 
 	@Test
 	void testAddAdmin() {
-		fail("Not yet implemented");
+		Integer id = 3;
+		int result = dao.addAdmin(id);
+		
+		System.out.println(result);
+		
+		assertTrue(result > 0);
 	}
 
 }
