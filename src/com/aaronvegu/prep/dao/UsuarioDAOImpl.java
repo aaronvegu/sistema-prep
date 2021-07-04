@@ -153,7 +153,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 
 	@Override
-	public int checkUser(String correo) {
+	public int checkUser(String correo, String password) {
 		Usuario u = this.getByMail(correo);
 		
 		if(u.getCorreo() == correo && u.getAprobado() == true)

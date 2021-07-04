@@ -90,7 +90,8 @@ class UsuarioDAOTest {
 	@Test
 	void testCheckUser() {
 		String correo = "aaronvegu@gmail.com";
-		int result = dao.checkUser(correo);
+		String password = "aaron";
+		int result = dao.checkUser(correo, password);
 		
 		System.out.println(result);
 		

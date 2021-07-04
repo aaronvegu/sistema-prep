@@ -18,7 +18,7 @@ public interface UsuarioDAO {
 	
 	public List<Usuario> list();
 	
-	public int checkUser(String correo);
+	public int checkUser(String correo, String password);
 	
 	public int addAdmin(Integer id);
 	
