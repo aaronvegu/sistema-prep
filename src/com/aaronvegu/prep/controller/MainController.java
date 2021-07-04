@@ -17,9 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.aaronvegu.prep.dao.CandidaturaDAO;
 import com.aaronvegu.prep.dao.CasillaDAO;
+import com.aaronvegu.prep.dao.UsuarioDAO;
 import com.aaronvegu.prep.dao.VotoDAO;
 import com.aaronvegu.prep.model.Candidatura;
 import com.aaronvegu.prep.model.Casilla;
+import com.aaronvegu.prep.model.Usuario;
 import com.aaronvegu.prep.model.Voto;
 
 @Controller
@@ -34,6 +36,9 @@ public class MainController {
 	@Autowired
 	private VotoDAO votoDAO;
 	
+	@Autowired 
+	private UsuarioDAO usuarioDAO;
+	
 	@RequestMapping(value = "/")
 	public String home() {
 		return "index";
@@ -43,13 +48,19 @@ public class MainController {
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String message;
+		String message = "Usuario incorrecto o no aprobado";
 		
-		if(username != null && !username.equals("") && username.equals("admin@gmail.com")
-				&& password != null && !password.equals("") && password.equals("admin")) {
+		Usuario u = usuarioDAO.getByMail(username);
+		
+		if(u == null)
+			return new ModelAndView("errorPage", "message", message);
+		
+		Integer result = usuarioDAO.checkUser(username, password);
+		
+		if(result != 0 && password != null && !password.equals("") && 
+				password.equals(u.getPassword())) {
 			return new ModelAndView("redirect:/inicio");
 		} else {
-			message = "Usuario incorrecto o no aprobado";
 			return new ModelAndView("errorPage", "message", message);
 		}
 				
@@ -212,6 +223,36 @@ public class MainController {
 		
 		return new ModelAndView("redirect:/votos");
 	}
+	
+	@RequestMapping(value = "/login-usuarios")
+	public String loginUsuarios() {
+		return "login-usuarios";
+	}
+	
+	@RequestMapping(value = "/usuarios")
+	public ModelAndView votos(HttpServletRequest request, HttpServletResponse response) {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String message = "Usuario incorrecto o sin permisos de administrador";
+		
+		if(username != null && username.equals("admin") && password != null && 
+				password.equals("admin")) {
+			return new ModelAndView("redirect:/lista-usuarios");
+		} else {
+			return new ModelAndView("error-page", "message", message);
+		}
+				
+	}
+	
+	@RequestMapping(value = "/lista-usuarios")
+	public ModelAndView listUsuario(ModelAndView model) {
+		List<Usuario> listUsuario = usuarioDAO.list();
+		model.addObject("listUsuario", listUsuario);
+		model.setViewName("lista-usuarios");
+		
+		return model;
+	}
+	
 	/*
 	@RequestMapping(value = "/agregar-votos")
 	public ModelAndView listVotos(ModelAndView model) {
