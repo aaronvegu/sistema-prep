@@ -332,6 +332,15 @@ public class MainController {
 		return model;
 	}	
 	
+	@RequestMapping(value = "/votos-partido")
+	public ModelAndView listVotosPorPartido(ModelAndView model) {
+		List<Resultado> listResultado = resultadoDAO.getResultsByParty();
+		model.addObject("listResultado", listResultado);
+		model.setViewName("votos-partido");
+		
+		return model;
+	}	
+	
 	/*
 	@RequestMapping(value = "/agregar-votos")
 	public ModelAndView listVotos(ModelAndView model) {

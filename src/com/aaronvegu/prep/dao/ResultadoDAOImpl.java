@@ -50,5 +50,26 @@ public class ResultadoDAOImpl implements ResultadoDAO {
 		
 		return jdbcTemplate.query(sql, rowMapper);
 	}
+	
+	@Override
+	public List<Resultado> getResultsByParty() {
+		String sql = "SELECT candidaturas.partido, votos.cantidad FROM votos "
+				+ "INNER JOIN candidaturas ON votos.candidatura = candidaturas.id "
+				+ "GROUP BY partido;";
+		
+		RowMapper<Resultado> rowMapper = new RowMapper<Resultado>() {
+
+			@Override
+			public Resultado mapRow(ResultSet rs, int rowNum) throws SQLException {
+				String partido = rs.getString("partido");
+				Integer cantidad = rs.getInt("cantidad");
+				
+				return new Resultado(partido, cantidad);
+			}
+			
+		};
+		
+		return jdbcTemplate.query(sql, rowMapper);
+	}
 
 }

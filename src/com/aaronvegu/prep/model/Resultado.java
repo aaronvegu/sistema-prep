@@ -17,6 +17,11 @@ public class Resultado {
 		
 	}
 	
+	public Resultado(String partido, Integer cantidad) {
+		this.partido = partido;
+		this.cantidad = cantidad;
+	}
+	
 	public Resultado(String candidatura, String partido, Boolean local, Boolean federal, String tipo, String municipio,
 			Integer seccion, Integer distrito, Integer cantidad) {
 		this.candidatura = candidatura;

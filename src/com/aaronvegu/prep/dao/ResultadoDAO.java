@@ -8,4 +8,6 @@ public interface ResultadoDAO {
 
 	public List<Resultado> list();
 	
+	public List<Resultado> getResultsByParty();
+	
 }

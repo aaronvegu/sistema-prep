@@ -36,5 +36,16 @@ class ResultadoDAOTest {
 		
 		assertTrue(!listResultado.isEmpty());
 	}
+	
+	@Test
+	void testGetResultsByParty() {
+		List<Resultado> listResultado = dao.getResultsByParty();
+		
+		for(Resultado aResultado : listResultado) {
+			System.out.println(aResultado);
+		}
+		
+		assertTrue(!listResultado.isEmpty());
+	}
 
 }
