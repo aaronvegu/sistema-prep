@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,7 @@
 	<div align="center" style="margin: 100px;">
 		<h1 style="margin: 20px;">Resultados al Momento</h1>
 		<h3 style="margin: 20px;">Lista de votos por casillas</h3>
+		<form:form method="POST" action="viewPDF" modelAttribute="resultados">
 		<table class="table" style="max-width: 1200px; margin: 50px 0px;">
 			<thead>
 				<tr>
@@ -50,6 +52,8 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<input class="btn btn-success" style="margin: 22px;" type="submit" value="Descargar PDF" />
+		</form:form>
 		<a href="/Prep/votos-partido"><button type="button" class="btn btn-primary" style="margin: 22px;">Votos Por Partido</button></a>
 		<a href="/Prep/inicio"><button type="button" class="btn btn-secondary" style="margin: 22px;">Volver</button></a>
 	</div>

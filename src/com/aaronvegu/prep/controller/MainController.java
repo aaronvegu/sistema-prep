@@ -339,7 +339,14 @@ public class MainController {
 		model.setViewName("votos-partido");
 		
 		return model;
-	}	
+	}
+	
+	@RequestMapping(value = "/viewPDF", method = RequestMethod.POST)
+	public ModelAndView verPDF(@ModelAttribute Resultado resultados) {
+		List<Resultado> listResultado = resultadoDAO.list();
+		
+		return new ModelAndView("viewPDF", "listResultado", listResultado);
+	}
 	
 	/*
 	@RequestMapping(value = "/agregar-votos")

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 
 import com.aaronvegu.prep.dao.CandidaturaDAO;
 import com.aaronvegu.prep.dao.CandidaturaDAOImpl;
@@ -39,8 +40,18 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 	}
 	
 	@Bean
+	public ViewResolver PDFResolver() {
+		ResourceBundleViewResolver resolver = new ResourceBundleViewResolver();
+		resolver.setOrder(1);
+		resolver.setBasename("pdf-view");
+		
+		return resolver;
+	}
+	
+	@Bean
 	public ViewResolver getViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		resolver.setOrder(2);
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
 		
