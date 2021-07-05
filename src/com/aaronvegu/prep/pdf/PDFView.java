@@ -30,6 +30,12 @@ public class PDFView extends AbstractPdfView {
 		table.setWidth(UnitValue.createPercentValue(100));
 		PdfFont bold = PdfFontFactory.createFont("Times-Bold");
 		
+		// Create title and subtitle
+		PdfFont titleFont = PdfFontFactory.createFont("Helvetica");
+		Paragraph title = new Paragraph("PROGRAMA DE RESULTADOS ELECTORALES PRELIMINARES").setFont(titleFont);
+		Paragraph subtitle = new Paragraph("Resultados por casillas").setFont(titleFont);
+		Paragraph space = new Paragraph(" ");
+		
 		// adding header
 		table.addHeaderCell(new Cell().add(new Paragraph("Candidatura").setFont(bold)));
 		table.addHeaderCell(new Cell().add(new Paragraph("Partido").setFont(bold)));
@@ -50,6 +56,16 @@ public class PDFView extends AbstractPdfView {
 			table.addCell(String.valueOf(r.getCantidad()));
 		}
 
+		// adding paragraph for footer
+		Paragraph footer = new Paragraph("Ing. de Software | CUTonala | 05/07/21");
+		
+		document.add(title);
+		document.add(subtitle);
+		document.add(space);
 		document.add(table);
+		document.add(space);
+		document.add(space);
+		document.add(space);
+		document.add(footer);
 	}
 }
