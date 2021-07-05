@@ -17,10 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.aaronvegu.prep.dao.CandidaturaDAO;
 import com.aaronvegu.prep.dao.CasillaDAO;
+import com.aaronvegu.prep.dao.ResultadoDAO;
 import com.aaronvegu.prep.dao.UsuarioDAO;
 import com.aaronvegu.prep.dao.VotoDAO;
 import com.aaronvegu.prep.model.Candidatura;
 import com.aaronvegu.prep.model.Casilla;
+import com.aaronvegu.prep.model.Resultado;
 import com.aaronvegu.prep.model.Usuario;
 import com.aaronvegu.prep.model.Voto;
 
@@ -38,6 +40,9 @@ public class MainController {
 	
 	@Autowired 
 	private UsuarioDAO usuarioDAO;
+	
+	@Autowired
+	private ResultadoDAO resultadoDAO;
 	
 	@RequestMapping(value = "/")
 	public String home() {
@@ -317,6 +322,15 @@ public class MainController {
 		
 		return new ModelAndView("redirect:/lista-usuarios");
 	}
+	
+	@RequestMapping(value = "/resultados")
+	public ModelAndView listResultado(ModelAndView model) {
+		List<Resultado> listResultado = resultadoDAO.list();
+		model.addObject("listResultado", listResultado);
+		model.setViewName("resultados");
+		
+		return model;
+	}	
 	
 	/*
 	@RequestMapping(value = "/agregar-votos")

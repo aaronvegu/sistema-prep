@@ -42,6 +42,14 @@
 				<a href="/Prep/login-usuarios">Ir a usuarios</a>
 			</div>
 		</div>
+		<br>
+		<br>
+		<div class="card" style="width: 18rem; margin: 0 auto;">
+			<div class="card-body" style="text-align: center;">
+				<h3 class="card-title">Resultados de Registros</h3>
+				<a href="/Prep/resultados">Ir a resultados</a>
+			</div>
+		</div>
 		<div align="center" style="margin: 50px;">
 			<a href="/Prep"><button type="button" class="btn btn-secondary" style="margin: 22px;">Salir</button></a>
 		</div>
